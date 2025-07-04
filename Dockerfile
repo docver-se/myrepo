@@ -1,4 +1,4 @@
-FROM node:22 as build
+FROM node:22 AS build
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY . /app
 RUN npm run build
 
 
-FROM node:22 as runner
+FROM node:22 AS runner
 
 WORKDIR /app
 
