@@ -62,12 +62,12 @@ export const PLANS = [
           test: {
             old: "price_1Q3bcHFJyGSZ96lhElXBA5C1",
             // new: "price_1Q8aUBBYvhH6u7U7LPIVxYpz",
-            new: "price_1QvgdNBYvhH6u7U7drrXAXM3", // exp
+            new: "price_1Reu8cHDrKL39Dz1ZhiS7dLh", // exp
           },
           production: {
             old: "price_1P3FK4FJyGSZ96lhD67yF3lj",
             // new: "price_1Q8egtBYvhH6u7U7gq1Pbp5Z",
-            new: "price_1Qvk3LBYvhH6u7U7JE4V6JY0", // exp
+            new: "price_1Reu8cHDrKL39Dz1ZhiS7dLh", // exp
           },
         },
       },
@@ -78,12 +78,12 @@ export const PLANS = [
           test: {
             old: "price_1Q3bV9FJyGSZ96lhCYWIcmg5",
             // new: "price_1Q8aTkBYvhH6u7U7kUiNTSLX",
-            new: "price_1QviTtBYvhH6u7U79PQ2rzMI", // exp
+            new: "price_1ReuCAHDrKL39Dz1OklHkojP", // exp
           },
           production: {
             old: "price_1Q3gfNFJyGSZ96lh2jGhEadm",
             // new: "price_1Q8egtBYvhH6u7U7T4ehn7SM",
-            new: "price_1Qvk3LBYvhH6u7U7kppryTjV", // exp
+            new: "price_1ReuCAHDrKL39Dz1OklHkojP", // exp
           },
         },
       },
@@ -100,11 +100,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1Q3bPhFJyGSZ96lhnxpiJMwz",
-            new: "price_1Q8aWlBYvhH6u7U7gTeKJJ0Y",
+            new: "price_1ReuDzHDrKL39Dz1HXxXw8aG",
           },
           production: {
             old: "price_1Q3gbVFJyGSZ96lhf7hsZciQ",
-            new: "price_1Q8egwBYvhH6u7U7XKLGjgHL",
+            new: "price_1ReuDzHDrKL39Dz1HXxXw8aG",
           },
         },
       },
@@ -114,11 +114,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1Q3bQ5FJyGSZ96lhoS8QbYXr",
-            new: "price_1Q8aVSBYvhH6u7U72mn6iPfK",
+            new: "price_1ReuG9HDrKL39Dz1XedEpo4E",
           },
           production: {
             old: "price_1Q3gbVFJyGSZ96lhqqLhBNDv",
-            new: "price_1Q8egwBYvhH6u7U7wRU6iPcW",
+            new: "price_1ReuG9HDrKL39Dz1XedEpo4E",
           },
         },
       },
@@ -135,11 +135,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1Q3bHPFJyGSZ96lhpQD0lMdU",
-            new: "price_1Q8aYLBYvhH6u7U7RUqHnsBh",
+            new: "price_1ReuHtHDrKL39Dz1PaSqDYV6",
           },
           production: {
             old: "price_1Q3gbbFJyGSZ96lhvmEwjZtm",
-            new: "price_1Q8egzBYvhH6u7U7IQUGzwoZ",
+            new: "price_1ReuHtHDrKL39Dz1PaSqDYV6",
           },
         },
       },
@@ -149,11 +149,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1Q3bJUFJyGSZ96lhLiEJlXlt",
-            new: "price_1Q8aXWBYvhH6u7U7unPGTnfy",
+            new: "price_1ReuIbHDrKL39Dz1zQKZwEhL",
           },
           production: {
             old: "price_1Q3gbbFJyGSZ96lhnk1CtnIZ",
-            new: "price_1Q8egzBYvhH6u7U7M2uoROMa",
+            new: "price_1ReuIbHDrKL39Dz1zQKZwEhL",
           },
         },
       },
@@ -170,11 +170,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1QojZuFJyGSZ96lhNwiD1y2r",
-            new: "price_1Qw63uBYvhH6u7U7dHVZ0kWZ",
+            new: "price_1ReuJJHDrKL39Dz1UQI7yqVO",
           },
           production: {
             old: "price_1QwMmmFJyGSZ96lhhaDXmzkY",
-            new: "price_1QwMkABYvhH6u7U74ccUfWkq",
+            new: "price_1ReuJJHDrKL39Dz1UQI7yqVO",
           },
         },
       },
@@ -184,11 +184,11 @@ export const PLANS = [
         priceIds: {
           test: {
             old: "price_1QojaPFJyGSZ96lhods9TOxh",
-            new: "price_1Qw63ABYvhH6u7U7MXK3UOJF",
+            new: "price_1ReuJoHDrKL39Dz1L7oIXO7q",
           },
           production: {
             old: "price_1QwMmeFJyGSZ96lh934mFNPA",
-            new: "price_1QwMjABYvhH6u7U7ccxGJXKN",
+            new: "price_1ReuJoHDrKL39Dz1L7oIXO7q",
           },
         },
       },
