@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json /app/
 
-COPY .env.production ./.env.production
+COPY .env ./.env.production
 
 COPY prisma ./prisma
 
