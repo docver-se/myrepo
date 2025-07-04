@@ -6,11 +6,10 @@ services:
           - "6543:5432"
         volumes:
           - pgdata:/var/lib/postgresql/data
-          - ./pg-init-scripts:/docker-entrypoint-initdb.d
         environment:
           POSTGRES_USER: docverse
           POSTGRES_PASSWORD: 8RGvWWodSBPOmQvAvJhEjzu9qVX9kJXN
-          POSTGRES_MULTIPLE_DATABASES: docverse
+          POSTGRES_DB: docverse
         networks:
           - docverse
     dashboard:
@@ -19,10 +18,15 @@ services:
         build:
           context: .
           dockerfile: Dockerfile
+        depends_on:
+          - database
         ports:
             - '3005:3005'
         networks:
             - docverse
+
+volumes:
+    pgdata:
 
 networks:
     docverse:

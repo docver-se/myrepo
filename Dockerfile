@@ -1,38 +1,43 @@
-FROM node:22-alpine AS deps
+FROM node:22 as build
+
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json /app/
+
+COPY .env.production ./.env.production
+
+COPY prisma ./prisma
 
 RUN npm ci
 
-
-
-FROM node:22-alpine AS builder
-
-ARG NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
-ARG NEXT_PUBLIC_BUCKET_BASE_URL=${NEXT_PUBLIC_BUCKET_BASE_URL}
-ARG NEXT_PUBLIC_LANDING_URL=${NEXT_PUBLIC_LANDING_URL}
-
-WORKDIR /app
-
-COPY . .
-COPY --from=deps /app/node_modules ./node_modules
+COPY . /app
 
 RUN npm run build
 
 
-
-FROM node:22-alpine AS runner
+FROM node:22 as runner
 
 WORKDIR /app
 
+COPY --from=build /app/prisma ./prisma
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/.env.production ./.env.production
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY --from=build /app/next.config.mjs ./next.config.mjs
+
+COPY ./docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENV SERVICE_NAME="DOCVERSE"
+
 ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV RUN_MIGRATIONS=ENABLE
 
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/static ./.next/static
+EXPOSE 3000
 
-EXPOSE 3005
-ENV HOSTNAME="0.0.0.0"
-
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["npm", "start"]
+
