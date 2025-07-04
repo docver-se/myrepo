@@ -144,7 +144,7 @@ export default function Branding() {
                 Branding
               </h1>
               <p className="text-xs text-muted-foreground sm:text-sm">
-                Customize how your brand appears globally across Papermark
+                Customize how your brand appears globally across Docverse
                 documents your visitors see.
               </p>
             </div>
@@ -458,7 +458,7 @@ export default function Branding() {
                                 </svg>
                               </div>
                               <span className="whitespace-normal text-xs text-muted-foreground">
-                                papermark.com/view/...
+                                docver.se/view/...
                               </span>
                             </div>
                           </div>
@@ -532,7 +532,7 @@ export default function Branding() {
                                 </svg>
                               </div>
                               <span className="whitespace-normal text-xs text-muted-foreground">
-                                papermark.com/view/...
+                                docver.se/view/...
                               </span>
                             </div>
                           </div>

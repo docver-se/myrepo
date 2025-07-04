@@ -21,19 +21,19 @@ export const runtime = "nodejs";
 
 const data = {
   description: "Confirm email change",
-  title: "Confirm email change | Papermark",
+  title: "Confirm email change | Docverse",
   url: "/auth/confirm-email-change",
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.papermark.com"),
+  metadataBase: new URL("https://docver.se"),
   title: data.title,
   description: data.description,
   openGraph: {
     title: data.title,
     description: data.description,
     url: data.url,
-    siteName: "Papermark",
+    siteName: "Docverse",
     images: [
       {
         url: "/_static/meta-image.png",

@@ -27,22 +27,22 @@ export default function TeamInvitation({
   return (
     <Html>
       <Head />
-      <Preview>Join the team on Papermark</Preview>
+      <Preview>Join the team on Docverse</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 w-[465px] p-5">
             <Text className="mx-0 mb-8 mt-4 p-0 text-center text-2xl font-normal">
-              <span className="font-bold tracking-tighter">Papermark</span>
+              <span className="font-bold tracking-tighter">Docverse</span>
             </Text>
             <Text className="font-seminbold mx-0 mb-8 mt-4 p-0 text-center text-xl">
-              {`Join ${teamName} on Papermark`}
+                              {`Join ${teamName} on Docverse`}
             </Text>
             <Text className="text-sm leading-6 text-black">Hey!</Text>
             <Text className="text-sm leading-6 text-black">
               <span className="font-semibold">{senderName}</span> ({senderEmail}
               ) has invited you to the{" "}
               <span className="font-semibold">{teamName}</span> team on{" "}
-              <span className="font-semibold">Papermark</span>.
+                              <span className="font-semibold">Docverse</span>.
             </Text>
             <Section className="my-8 text-center">
               <Button
@@ -64,11 +64,11 @@ export default function TeamInvitation({
               <Text className="text-xs">
                 © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.papermark.com"
+                  href="https://www.docver.se"
                   className="text-gray-400 no-underline visited:text-gray-400 hover:text-gray-400"
                   target="_blank"
                 >
-                  papermark.com
+                  docver.se
                 </a>
               </Text>
               <Text className="text-xs">

@@ -27,46 +27,60 @@ export default function App({
   return (
     <>
       <Head>
-        <title>Papermark | The Open Source DocSend Alternative</title>
+        <title>Docverse | The Open Source Document Sharing Platform</title>
         <meta name="theme-color" content="#000000" />
         <meta
           name="description"
-          content="Papermark is an open-source document sharing alternative to DocSend with built-in analytics."
+          content="Docverse is an open-source document sharing platform with built-in analytics and custom domains."
           key="description"
         />
         <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1"
+        />
+        <meta
           property="og:title"
-          content="Papermark | The Open Source DocSend Alternative"
+          content="Docverse | The Open Source Document Sharing Platform"
           key="og-title"
         />
         <meta
           property="og:description"
-          content="Papermark is an open-source document sharing alternative to DocSend with built-in analytics."
+          content="Docverse is an open-source document sharing platform with built-in analytics and custom domains."
           key="og-description"
         />
         <meta
           property="og:image"
-          content="https://www.papermark.com/_static/meta-image.png"
+          content="https://app.docver.se/_static/meta-image.png"
           key="og-image"
         />
         <meta
+          property="og:image:width"
+          content="1200"
+          key="og-image-width"
+        />
+        <meta
+          property="og:image:height"
+          content="630"
+          key="og-image-height"
+        />
+        <meta
           property="og:url"
-          content="https://www.papermark.com"
+          content="https://app.docver.se"
           key="og-url"
         />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@papermarkio" />
-        <meta name="twitter:creator" content="@papermarkio" />
-        <meta name="twitter:title" content="Papermark" key="tw-title" />
+        <meta name="twitter:card" content="summary_large_image" key="tw-card" />
+        <meta name="twitter:site" content="@docversehq" />
+        <meta name="twitter:creator" content="@docversehq" />
+        <meta name="twitter:title" content="Docverse" key="tw-title" />
         <meta
           name="twitter:description"
-          content="Papermark is an open-source document sharing alternative to DocSend with built-in analytics."
+          content="Docverse is an open-source document sharing platform with built-in analytics and custom domains."
           key="tw-description"
         />
         <meta
           name="twitter:image"
-          content="https://www.papermark.com/_static/meta-image.png"
+          content="https://app.docver.se/_static/meta-image.png"
           key="tw-image"
         />
         <link rel="icon" href="/favicon.ico" key="favicon" />
@@ -75,7 +89,7 @@ export default function App({
         <PostHogCustomProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
             <PlausibleProvider
-              domain="papermark.io"
+              domain="docver.se"
               enabled={process.env.NEXT_PUBLIC_VERCEL_ENV === "production"}
             >
               <NuqsAdapter>

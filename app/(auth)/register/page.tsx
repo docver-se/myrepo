@@ -3,20 +3,20 @@ import { Metadata } from "next";
 import RegisterClient from "./page-client";
 
 const data = {
-  description: "Signup to Papermark",
-  title: "Sign up | Papermark",
+  description: "Signup to Docverse",
+  title: "Sign up | Docverse",
   url: "/register",
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.papermark.com"),
+  metadataBase: new URL("https://docver.se"),
   title: data.title,
   description: data.description,
   openGraph: {
     title: data.title,
     description: data.description,
     url: data.url,
-    siteName: "Papermark",
+    siteName: "Docverse",
     images: [
       {
         url: "/_static/meta-image.png",

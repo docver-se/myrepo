@@ -218,7 +218,7 @@ export default function DocumentHeader({
         }),
         {
           loading: "Activating Assistant...",
-          success: "Papermark Assistant successfully activated.",
+          success: "Docverse Assistant successfully activated.",
           error: "Activation failed. Please try again.",
         },
       );

@@ -14,10 +14,10 @@ export const STAGGER_CHILD_VARIANTS = {
   },
 };
 
-export const PAPERMARK_HEADERS = {
+export const DOCVERSE_HEADERS = {
   headers: {
     "x-powered-by":
-      "Papermark.io - Document sharing infrastructure for the modern web",
+      "Docverse - Document sharing platform for the modern web",
   },
 };
 

@@ -38,7 +38,7 @@ const TrialEndFinalReminderEmail = ({ name }: TrialEndFinalReminderEmail) => {
               Hey{name && ` ${name}`}!
             </Text>
             <Text className="text-sm leading-6 text-black">
-              Your Papermark Pro trial expires in 24 hours.{" "}
+              Your Docverse Pro trial expires in 24 hours.{" "}
               <Link href={`https://app.papermark.com/settings/billing`}>
                 Upgrade now
               </Link>{" "}
@@ -76,11 +76,11 @@ const TrialEndFinalReminderEmail = ({ name }: TrialEndFinalReminderEmail) => {
               <Text className="text-xs">
                 © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.papermark.com"
+                  href="https://www.docver.se"
                   className="text-gray-400 no-underline visited:text-gray-400 hover:text-gray-400"
                   target="_blank"
                 >
-                  papermark.com
+                  docver.se
                 </a>
               </Text>
               <Text className="text-xs">

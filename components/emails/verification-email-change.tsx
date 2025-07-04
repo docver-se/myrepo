@@ -32,10 +32,10 @@ export function ConfirmEmailChange({
           <Container className="mx-auto my-10 max-w-[500px] rounded border border-solid border-gray-200 px-10 py-5">
             <Section>
               <Text className="mx-0 mb-8 mt-4 p-0 text-center text-2xl font-normal">
-                <span className="font-bold tracking-tighter">Papermark</span>
+                <span className="font-bold tracking-tighter">Docverse</span>
               </Text>
               <Heading className="mx-0 my-7 p-0 text-center text-xl font-semibold text-black">
-                Your Papermark Email Change Confirmation Link
+                                  Your Docverse Email Change Confirmation Link
               </Heading>
             </Section>
             <Heading className="text-sm leading-6 text-black">
@@ -65,11 +65,11 @@ export function ConfirmEmailChange({
               <Text className="text-xs">
                 © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.papermark.com"
+                  href="https://www.docver.se"
                   className="text-gray-400 no-underline visited:text-gray-400 hover:text-gray-400"
                   target="_blank"
                 >
-                  papermark.com
+                  docver.se
                 </a>
               </Text>
               <Text className="text-xs">

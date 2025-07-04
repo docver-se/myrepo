@@ -103,8 +103,8 @@ export default function DataroomDocumentViewPage({
           enableBranding={meta.enableCustomMetatag ?? false}
           title={
             meta.metaTitle ??
-            `${link?.dataroomDocument?.document?.name} | Powered by Papermark` ??
-            "Document powered by Papermark"
+                    `${link?.dataroomDocument?.document?.name} | Powered by Docverse` ??
+        "Document powered by Docverse"
           }
           description={meta.metaDescription ?? null}
           imageUrl={meta.metaImage ?? null}
@@ -149,8 +149,8 @@ export default function DataroomDocumentViewPage({
         enableBranding={meta.enableCustomMetatag ?? false}
         title={
           meta.metaTitle ??
-          `${link?.dataroomDocument?.document?.name} | Powered by Papermark` ??
-          "Dataroom powered by Papermark"
+                  `${link?.dataroomDocument?.document?.name} | Powered by Docverse` ??
+        "Dataroom powered by Docverse"
         }
         description={meta.metaDescription ?? null}
         imageUrl={meta.metaImage ?? null}
@@ -251,7 +251,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           metaDescription: link.metaDescription,
           metaImage: link.metaImage,
           metaFavicon: link.metaFavicon ?? "/favicon.ico",
-          metaUrl: `https://www.papermark.com/view/${linkId}`,
+          metaUrl: `https://app.docver.se/view/${linkId}`,
         },
         showPoweredByBanner: false,
         showAccountCreationSlide: false,

@@ -294,11 +294,11 @@ export default function ViewPage({
           <CustomMetaTag
             favicon={meta.metaFavicon}
             enableBranding={meta.enableCustomMetatag ?? false}
-            title={
-              meta.metaTitle ??
-              `${link?.document?.name} | Powered by Papermark` ??
-              "Document powered by Papermark"
-            }
+                    title={
+          meta.metaTitle ??
+          `${link?.document?.name} | Powered by Docverse` ??
+          "Document powered by Docverse"
+        }
             description={meta.metaDescription ?? null}
             imageUrl={meta.metaImage ?? null}
             url={meta.metaUrl ?? ""}
@@ -341,8 +341,8 @@ export default function ViewPage({
           enableBranding={meta.enableCustomMetatag ?? false}
           title={
             meta.metaTitle ??
-            `${link?.document?.name} | Powered by Papermark` ??
-            "Document powered by Papermark"
+            `${link?.document?.name} | Powered by Docverse` ??
+            "Document powered by Docverse"
           }
           description={meta.metaDescription ?? null}
           imageUrl={meta.metaImage ?? null}
@@ -378,8 +378,8 @@ export default function ViewPage({
             enableBranding={meta.enableCustomMetatag ?? false}
             title={
               meta.metaTitle ??
-              `${link?.dataroom?.name} | Powered by Papermark` ??
-              "Dataroom powered by Papermark"
+              `${link?.dataroom?.name} | Powered by Docverse` ??
+              "Dataroom powered by Docverse"
             }
             description={meta.metaDescription ?? null}
             imageUrl={meta.metaImage ?? null}
@@ -424,8 +424,8 @@ export default function ViewPage({
           enableBranding={meta.enableCustomMetatag ?? false}
           title={
             meta.metaTitle ??
-            `${link?.dataroom?.name} | Powered by Papermark` ??
-            "Dataroom powered by Papermark"
+            `${link?.dataroom?.name} | Powered by Docverse` ??
+            "Dataroom powered by Docverse"
           }
           description={meta.metaDescription ?? null}
           imageUrl={meta.metaImage ?? null}

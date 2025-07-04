@@ -43,7 +43,7 @@ export default function DataroomNotification({
               A new document{" "}
               <span className="font-semibold">{documentName}</span> has been
               added to <span className="font-semibold">{dataroomName}</span>{" "}
-              dataroom on Papermark.
+              dataroom on Docverse.
             </Text>
             <Section className="mb-[32px] mt-[32px] text-center">
               <Button

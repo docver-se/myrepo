@@ -30,13 +30,13 @@ const WelcomeEmail = ({ name }: WelcomeEmailProps) => {
           <Container className="mx-auto my-10 w-[465px] p-5">
             <Text className="mx-0 mb-8 mt-4 p-0 text-center text-2xl font-normal">
               Welcome to{" "}
-              <span className="font-bold tracking-tighter">Papermark</span>
+              <span className="font-bold tracking-tighter">Docverse</span>
             </Text>
             <Text className="text-sm">
               Thanks for signing up{name && `, ${name}`}!
             </Text>
             <Text className="text-sm">
-              My name is Marc, and I&apos;m the creator of Papermark – the
+              My name is Marc, and I&apos;m the creator of Docverse – the
               open-source DocSend alternative! I&apos;m excited to have you on
               board!
             </Text>
@@ -72,7 +72,7 @@ const WelcomeEmail = ({ name }: WelcomeEmailProps) => {
                   <li>
                     Star the repo on{" "}
                     <Link
-                      href="https://github.com/mfts/papermark"
+                      href="https://github.com/mfts/docverse"
                       target="_blank"
                     >
                       GitHub
@@ -80,14 +80,14 @@ const WelcomeEmail = ({ name }: WelcomeEmailProps) => {
                   </li>
                   <li>
                     Follow the journey on{" "}
-                    <Link href="https://x.com/papermarkio" target="_blank">
+                    <Link href="https://x.com/docverseio" target="_blank">
                       Twitter
                     </Link>
                   </li>
                   <li>
                     Have a call to talk enterprise{" "}
                     <Link
-                      href="https://cal.com/marcseitz/papermark"
+                      href="https://cal.com/marcseitz/docverse"
                       target="_blank"
                     >
                       Book
@@ -101,22 +101,22 @@ const WelcomeEmail = ({ name }: WelcomeEmailProps) => {
                 If you have any questions or feedback just respond to this
                 email. I&apos;m always happy to help!
               </Text>
-              <Text className="text-sm text-gray-400">Marc from Papermark</Text>
+              <Text className="text-sm text-gray-400">Marc from Docverse</Text>
             </Section>
             <Hr />
             <Section className="mt-8 text-gray-400">
               <Text className="text-xs">
                 © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.papermark.com"
+                  href="https://docver.se"
                   className="text-gray-400 no-underline visited:text-gray-400 hover:text-gray-400"
                   target="_blank"
                 >
-                  papermark.com
+                  docver.se
                 </a>
               </Text>
               <Text className="text-xs">
-                You will shortly receive the intro to Papermark. Stay tuned.
+                You will shortly receive the intro to Docverse. Stay tuned.
               </Text>
             </Section>
           </Container>

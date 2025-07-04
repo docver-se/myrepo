@@ -371,9 +371,9 @@ export const convertThreadMessagesToMessages = (
 };
 
 export function constructMetadata({
-  title = "Papermark | The Open Source DocSend Alternative",
-  description = "Papermark is an open-source document sharing alternative to DocSend with built-in engagement analytics and 100% white-labeling.",
-  image = "https://www.papermark.com/_static/meta-image.png",
+  title = "Docverse | The Open Source Document Sharing Platform",
+  description = "Docverse is an open-source document sharing platform with built-in engagement analytics and custom domains.",
+  image = "https://app.docver.se/_static/meta-image.png",
   favicon = "/favicon.ico",
   noIndex = false,
 }: {
@@ -400,7 +400,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: "@papermarkio",
+      creator: "@docversehq",
     },
     favicon,
     ...(noIndex && {

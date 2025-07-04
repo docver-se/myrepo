@@ -6,28 +6,10 @@ export default async function DomainMiddleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
   const host = req.headers.get("host");
 
-  // If it's the root path, redirect to papermark.com/home
+  // If it's the root path, redirect to docver.se/home
   if (path === "/") {
-    if (host === "guide.permithealth.com") {
-      return NextResponse.redirect(
-        new URL("https://guide.permithealth.com/faq", req.url),
-      );
-    }
-
-    if (host === "fund.tradeair.in") {
-      return NextResponse.redirect(
-        new URL("https://tradeair.in/sv-fm-inbound", req.url),
-      );
-    }
-
-    if (host === "docs.pashupaticapital.com") {
-      return NextResponse.redirect(
-        new URL("https://www.pashupaticapital.com/", req.url),
-      );
-    }
-
     return NextResponse.redirect(
-      new URL("https://www.papermark.com/home", req.url),
+      new URL("https://docver.se/home", req.url),
     );
   }
 
@@ -47,7 +29,7 @@ export default async function DomainMiddleware(req: NextRequest) {
     headers: {
       "X-Robots-Tag": "noindex",
       "X-Powered-By":
-        "Papermark.io - Document sharing infrastructure for the modern web",
+        "Docverse - Document sharing platform for the modern web",
     },
   });
 }

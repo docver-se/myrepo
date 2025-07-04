@@ -125,11 +125,11 @@ const UpgradePlanEmail = ({
               <Text className="text-xs">
                 © {new Date().getFullYear()}{" "}
                 <a
-                  href="https://www.papermark.com"
+                  href="https://www.docver.se"
                   className="text-gray-400 no-underline visited:text-gray-400 hover:text-gray-400"
                   target="_blank"
                 >
-                  papermark.com
+                  docver.se
                 </a>
               </Text>
               <Text className="text-xs">
