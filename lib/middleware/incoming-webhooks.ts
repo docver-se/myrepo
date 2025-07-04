@@ -18,11 +18,20 @@ export default async function IncomingWebhookMiddleware(req: NextRequest) {
 }
 
 export function isWebhookPath(host: string | null) {
-  if (!process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST) {
+  const webhookHost = process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST;
+  const result = webhookHost && host === webhookHost;
+  
+  console.log(`[WEBHOOK_MIDDLEWARE] isWebhookPath check:`, {
+    host,
+    webhookHost,
+    result
+  });
+  
+  if (!webhookHost) {
     return false;
   }
 
-  if (host === process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST) {
+  if (host === webhookHost) {
     return true;
   }
 
