@@ -12,8 +12,9 @@ export default async function AppMiddleware(req: NextRequest) {
     url: req.url,
     isInvited
   });
+  let token: any = null
 
-  const token = (await getToken({
+  token = (await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
   })) as {
@@ -22,6 +23,25 @@ export default async function AppMiddleware(req: NextRequest) {
       createdAt?: string;
     };
   };
+
+  if (!token) {
+    token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET,
+      cookieName: "next-auth.session-token"
+    });
+    console.log("🔍 Method 2 - Explicit cookie name:", { hasToken: !!token, email: token?.email });
+  }
+  
+  // Method 3: Try with secureCookie false
+  if (!token) {
+    token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET,
+      secureCookie: false
+    });
+    console.log("🔍 Method 3 - secureCookie false:", { hasToken: !!token, email: token?.email });
+  }
 
   console.log(`[APP_MIDDLEWARE] Auth check:`, {
     hasToken: !!token,

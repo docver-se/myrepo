@@ -19,11 +19,25 @@ export default async function IncomingWebhookMiddleware(req: NextRequest) {
 
 export function isWebhookPath(host: string | null) {
   const webhookHost = process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST;
+  const appHost = process.env.NEXT_PUBLIC_APP_BASE_HOST;
+  
+  // If webhook host is the same as app host, don't treat as webhook path
+  // This prevents the main app from being treated as webhook-only
+  if (webhookHost === appHost) {
+    console.log(`[WEBHOOK_MIDDLEWARE] isWebhookPath check: webhook host same as app host, returning false`, {
+      host,
+      webhookHost,
+      appHost
+    });
+    return false;
+  }
+  
   const result = webhookHost && host === webhookHost;
   
   console.log(`[WEBHOOK_MIDDLEWARE] isWebhookPath check:`, {
     host,
     webhookHost,
+    appHost,
     result
   });
   
