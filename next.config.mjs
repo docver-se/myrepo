@@ -16,6 +16,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/",
+        destination: "/dashboard",
+        permanent: false,
+      },
+      {
         source: "/view/cm2xiaxzo000d147xszm9q72o",
         destination: "/view/cm34cqqqx000212oekj9upn8o",
         permanent: false,
