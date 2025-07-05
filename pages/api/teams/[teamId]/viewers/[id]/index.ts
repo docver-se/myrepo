@@ -113,12 +113,12 @@ export default async function handle(
         Object.entries(groupedViewsByDocumentId ?? {}).map(
           async ([documentId, view]) => {
             const durationResult = await getDocumentDurationPerViewer({
-              documentId,
+              doc_id: documentId,
               viewIds: view.viewIds.join(","),
             });
             return {
               documentId,
-              sum_duration: durationResult.data[0].sum_duration,
+              total_duration: durationResult.data[0].total_duration,
             };
           },
         ),
@@ -126,7 +126,7 @@ export default async function handle(
 
       // Create a map for quick lookup
       const durationMap = new Map(
-        documentDurations.map((d) => [d.documentId, d.sum_duration]),
+        documentDurations.map((d) => [d.documentId, d.total_duration]),
       );
 
       // create a new array with the grouped views and merge with document details

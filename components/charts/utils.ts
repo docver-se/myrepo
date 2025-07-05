@@ -8,7 +8,7 @@ export type Data = {
 
 export type SumData = {
   pageNumber: string;
-  sum_duration: number;
+  duration: number;
 };
 
 export type TransformedData = {

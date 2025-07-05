@@ -49,7 +49,7 @@ export function useStats({
 interface StatsViewData {
   views: View[];
   duration: {
-    data: { pageNumber: string; sum_duration: number }[];
+    data: { pageNumber: string; duration: number }[];
   };
 }
 

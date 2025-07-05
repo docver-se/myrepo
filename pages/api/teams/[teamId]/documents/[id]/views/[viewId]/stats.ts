@@ -52,7 +52,7 @@ export default async function handle(
       });
 
       const total_duration = duration.data.reduce(
-        (totalDuration, data) => totalDuration + data.sum_duration,
+        (totalDuration, data) => totalDuration + data.duration,
         0,
       );
 

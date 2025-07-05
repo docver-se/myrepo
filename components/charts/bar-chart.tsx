@@ -28,8 +28,8 @@ const renameSumDurationKey = (data: SumData[], versionNumber?: number) => {
   return data.map((item) => {
     return {
       ...item,
-      "Time spent per page": item.sum_duration,
-      sum_duration: undefined,
+      "Time spent per page": item.duration,
+      duration: undefined,
       versionNumber: versionNumber,
     };
   });

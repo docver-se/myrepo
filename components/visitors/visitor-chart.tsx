@@ -29,7 +29,7 @@ export default function VisitorChart({
 
   let durationData = Array.from({ length: totalPages }, (_, i) => ({
     pageNumber: (i + 1).toString(),
-    sum_duration: 0,
+    duration: 0,
   }));
 
   const swrData = stats?.duration;

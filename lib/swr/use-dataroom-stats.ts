@@ -12,7 +12,7 @@ export type TDataroomStatsData = {
   documentViews: View[];
   duration: {
     viewId: string;
-    sum_duration: number;
+    total_duration: number;
   }[];
   total_duration: number;
 };
