@@ -8,8 +8,7 @@ import { getServerSession } from "next-auth/next";
 import { LIMITS } from "@/lib/constants";
 import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import { getViewPageDurationHttp } from "@/lib/tinybird/http-client";
-import { getVideoEventsByDocument } from "@/lib/tinybird/pipes";
+import { getViewPageDurationHttp, getVideoEventsByDocumentHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 import { log } from "@/lib/utils";
 
@@ -288,9 +287,17 @@ export default async function handle(
 
       let viewsWithDuration;
       if (document.type === "video") {
-        const videoEvents = await getVideoEventsByDocument({
-          documentId: docId,
-        });
+        let videoEvents;
+        try {
+          videoEvents = await getVideoEventsByDocumentHttp({
+            documentId: docId,
+          });
+        } catch (error) {
+          console.error("Error fetching video events:", error);
+          // Fallback to empty video events if Tinybird call fails
+          videoEvents = { data: [] };
+        }
+        
         viewsWithDuration = await getVideoViews(
           limitedViews,
           document,
