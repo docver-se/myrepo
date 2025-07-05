@@ -62,7 +62,7 @@ interface ViewWithDuration extends View {
     data: { pageNumber: string; duration: number }[];
   };
   totalDuration: number;
-  completionRate: number;
+  completionRate: string; // API returns string from .toFixed()
 }
 
 export function useLinkVisits(linkId: string) {

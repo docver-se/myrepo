@@ -6,7 +6,7 @@ import { LIMITS } from "@/lib/constants";
 import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
 import { getDocumentWithTeamAndUser } from "@/lib/team/helper";
-import { getViewPageDuration } from "@/lib/tinybird";
+import { getViewPageDurationHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 import { log } from "@/lib/utils";
 
@@ -95,35 +95,56 @@ export default async function handle(
           ? views.slice(0, LIMITS.views)
           : views;
 
-      const durationsPromises = limitedViews.map((view) => {
-        return getViewPageDuration({
-          documentId: view.documentId!,
-          viewId: view.id,
-          since: 0,
-        });
+      const durationsPromises = limitedViews.map(async (view) => {
+        try {
+          const result = await getViewPageDurationHttp({
+            documentId: view.documentId!,
+            viewId: view.id,
+            since: 0,
+          });
+          
+          // Transform the response to maintain compatibility
+          // HTTP version returns { page: string } but frontend expects { pageNumber: string }
+          return {
+            data: result.data.map(item => ({
+              pageNumber: item.page,
+              duration: item.duration
+            }))
+          };
+        } catch (error) {
+          console.error(`Error fetching duration for view ${view.id}:`, error);
+          return { data: [] };
+        }
       });
 
       const durations = await Promise.all(durationsPromises);
 
       // Sum up durations for each view
       const summedDurations = durations.map((duration) => {
+        if (!duration?.data || !Array.isArray(duration.data)) {
+          return 0;
+        }
         return duration.data.reduce(
-          (totalDuration, data) => totalDuration + data.duration,
+          (totalDuration, data) => totalDuration + (data?.duration || 0),
           0,
         );
       });
 
       // Construct the response combining views and their respective durations
       const viewsWithDuration = limitedViews.map((view, index) => {
+        // Safety check for duration data
+        const durationData = durations[index]?.data || [];
+        const totalDuration = summedDurations[index] || 0;
+        
         // calculate the completion rate
-        const completionRate = numPages
-          ? (durations[index].data.length / numPages) * 100
+        const completionRate = numPages && durationData.length > 0
+          ? (durationData.length / numPages) * 100
           : 0;
 
         return {
           ...view,
           duration: durations[index],
-          totalDuration: summedDurations[index],
+          totalDuration,
           completionRate: completionRate.toFixed(),
         };
       });
