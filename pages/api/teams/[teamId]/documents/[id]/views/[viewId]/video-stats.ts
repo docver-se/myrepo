@@ -3,8 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
+import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import { getVideoEventsByView } from "@/lib/tinybird/pipes";
+import { getVideoEventsByViewHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 
 export default async function handler(
@@ -67,16 +68,16 @@ export default async function handler(
     }
 
     // Fetch video events from Tinybird
-    const response = await getVideoEventsByView({
+    const videoEvents = await getVideoEventsByViewHttp({
       viewId,
     });
 
-    if (!response?.data) {
+    if (!videoEvents?.data) {
       return res.status(200).json({ data: [] });
     }
 
     // Filter for valid events and ensure valid time ranges > 1 second
-    const validEvents = response.data.filter(
+    const validEvents = videoEvents.data.filter(
       (event) =>
         (event.event_type === "played" ||
           event.event_type === "muted" ||

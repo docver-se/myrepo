@@ -4,7 +4,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
 import prisma from "@/lib/prisma";
-import { getWebhookEvents } from "@/lib/tinybird/pipes";
+import { getWebhookEventsHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 
 export default async function handler(
@@ -42,7 +42,7 @@ export default async function handler(
         },
       });
 
-      const events = await getWebhookEvents({
+      const events = await getWebhookEventsHttp({
         webhook_id: pId,
       });
 

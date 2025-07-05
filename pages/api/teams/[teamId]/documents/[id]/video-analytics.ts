@@ -1,11 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
+import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import { getVideoEventsByDocument } from "@/lib/tinybird/pipes";
+import { getVideoEventsByDocumentHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
+
+import { authOptions } from "../../../../auth/[...nextauth]";
 
 interface AnalyticsResponse {
   overall: {
@@ -189,7 +191,7 @@ export default async function handle(
 
     try {
       // Fetch video events from Tinybird
-      const response = await getVideoEventsByDocument({
+      const response = await getVideoEventsByDocumentHttp({
         documentId,
       });
 

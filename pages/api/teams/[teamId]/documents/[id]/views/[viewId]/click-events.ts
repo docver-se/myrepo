@@ -3,8 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
+import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import { getClickEventsByView } from "@/lib/tinybird/pipes";
+import { getClickEventsByViewHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 import { log } from "@/lib/utils";
 
@@ -53,11 +54,11 @@ export default async function handler(
       return res.status(403).end("Forbidden");
     }
 
-    const data = await getClickEventsByView({
-      viewId: viewId,
+    const clickEvents = await getClickEventsByViewHttp({
+      viewId,
     });
 
-    return res.status(200).json(data);
+    return res.status(200).json(clickEvents);
   } catch (error) {
     log({
       message: `Failed to get click events for document ${id} and view ${viewId}. \n\n ${error}`,

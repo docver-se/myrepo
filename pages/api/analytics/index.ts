@@ -6,11 +6,11 @@ import { z } from "zod";
 
 import prisma from "@/lib/prisma";
 import {
-  getTotalDocumentDuration,
-  getTotalLinkDuration,
-  getTotalViewerDuration,
-  getViewPageDuration,
-} from "@/lib/tinybird/pipes";
+  getTotalDocumentDurationHttp,
+  getTotalLinkDurationHttp,
+  getTotalViewerDurationHttp,
+  getViewPageDurationHttp,
+} from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 import { durationFormat } from "@/lib/utils";
 
@@ -305,7 +305,7 @@ export default async function handler(
 
             if (link.documentId) {
               try {
-                const durationData = await getTotalLinkDuration({
+                const durationData = await getTotalLinkDurationHttp({
                   linkId: link.id,
                   documentId: link.documentId,
                   excludedViewIds: "", // Include all views
@@ -396,7 +396,7 @@ export default async function handler(
           documents.map(async (doc) => {
             let avgDuration = "0s";
             try {
-              const durationData = await getTotalDocumentDuration({
+              const durationData = await getTotalDocumentDurationHttp({
                 documentId: doc.id,
                 excludedLinkIds: "", // Include all links
                 excludedViewIds: "", // Include all views
@@ -465,7 +465,7 @@ export default async function handler(
             let totalDuration = 0;
             try {
               const viewIds = viewer.views.map((view) => view.id).join(",");
-              const durationData = await getTotalViewerDuration({
+              const durationData = await getTotalViewerDurationHttp({
                 viewIds,
                 since,
                 until: endStr
@@ -540,7 +540,7 @@ export default async function handler(
 
             if (view.document?.id) {
               try {
-                const pageData = await getViewPageDuration({
+                const pageData = await getViewPageDurationHttp({
                   documentId: view.document.id,
                   viewId: view.id,
                   since,

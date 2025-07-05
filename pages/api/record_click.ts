@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
 import { newId } from "@/lib/id-helper";
-import { recordClickEvent } from "@/lib/tinybird";
+import { recordClickEventHttp } from "@/lib/tinybird/http-client";
 import { log } from "@/lib/utils";
 
 const bodyValidation = z.object({
@@ -72,7 +72,7 @@ export default async function handler(
   }
 
   try {
-    await recordClickEvent(result.data);
+    await recordClickEventHttp(result.data);
     res.status(200).json({ message: "Click event recorded" });
   } catch (error) {
     log({
