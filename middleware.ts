@@ -69,32 +69,21 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const path = req.nextUrl.pathname;
   const host = req.headers.get("host");
 
-  console.log(`[MIDDLEWARE] Request:`, {
-    path,
-    host,
-    url: req.url,
-    method: req.method,
-    env: {
-      NODE_ENV: process.env.NODE_ENV,
-      NEXT_PUBLIC_WEBHOOK_BASE_HOST: process.env.NEXT_PUBLIC_WEBHOOK_BASE_HOST,
-      NEXT_PUBLIC_APP_BASE_HOST: process.env.NEXT_PUBLIC_APP_BASE_HOST
-    }
-  });
 
   if (isAnalyticsPath(path)) {
-    console.log(`[MIDDLEWARE] → PostHogMiddleware (analytics path)`);
+    // console.log(`[MIDDLEWARE] → PostHogMiddleware (analytics path)`);
     return PostHogMiddleware(req);
   }
 
   // Handle incoming webhooks
   if (isWebhookPath(host)) {
-    console.log(`[MIDDLEWARE] → IncomingWebhookMiddleware (webhook path)`);
+    // console.log(`[MIDDLEWARE] → IncomingWebhookMiddleware (webhook path)`);
     return IncomingWebhookMiddleware(req);
   }
 
   // For custom domains, we need to handle them differently
   if (isCustomDomain(host || "")) {
-    console.log(`[MIDDLEWARE] → DomainMiddleware (custom domain)`);
+    // console.log(`[MIDDLEWARE] → DomainMiddleware (custom domain)`);
     return DomainMiddleware(req);
   }
 
@@ -104,7 +93,7 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
     !path.startsWith("/verify") &&
     !path.startsWith("/unsubscribe")
   ) {
-    console.log(`[MIDDLEWARE] → AppMiddleware (standard app path)`);
+    // console.log(`[MIDDLEWARE] → AppMiddleware (standard app path)`);
     return AppMiddleware(req);
   }
 
@@ -114,12 +103,12 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
     (BLOCKED_PATHNAMES.some((blockedPath) => path.includes(blockedPath)) ||
       path.includes("."))
   ) {
-    console.log(`[MIDDLEWARE] → 404 (blocked pathname in view route)`);
+    // console.log(`[MIDDLEWARE] → 404 (blocked pathname in view route)`);
     const url = req.nextUrl.clone();
     url.pathname = "/404";
     return NextResponse.rewrite(url, { status: 404 });
   }
 
-  console.log(`[MIDDLEWARE] → NextResponse.next() (fallthrough)`);
+  // console.log(`[MIDDLEWARE] → NextResponse.next() (fallthrough)`);
   return NextResponse.next();
 }
