@@ -1,17 +1,13 @@
-VERSION 4
-
 NODE endpoint
 SQL >
     %
     SELECT
-        pageNumber,
-        SUM(duration) AS sum_duration
+        pageNumber as page,
+        sum(duration) as duration
     FROM
-        page_views__v3
+        page_views
     WHERE
-        documentId = {{ String(documentId, required=True) }}
-        AND viewId = {{ String(viewId, required=True) }}
-        AND time >= {{ Int64(since, required=True) }}
+        viewId = {{ String(viewId, required=True) }}
     GROUP BY
         pageNumber
     ORDER BY

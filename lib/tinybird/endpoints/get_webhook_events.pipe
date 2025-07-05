@@ -1,14 +1,12 @@
-VERSION 1
-
 NODE endpoint
 SQL >
     %
     SELECT
         *
     FROM
-        webhook_events__v1
+        webhook_events
     WHERE
-        webhook_id = {{ String(webhookId, required=True) }}
+        webhook_id = {{ String(webhook_id, required=True) }}
     ORDER BY
         timestamp DESC
     LIMIT 100
