@@ -6,6 +6,12 @@ export const getFileForDocumentPage = async (
   documentId: string,
   versionNumber?: number,
 ): Promise<string> => {
+  console.log(`Getting file for document page - Input parameters:`, {
+    pageNumber,
+    documentId,
+    versionNumber,
+  });
+
   const documentVersions = await prisma.documentVersion.findMany({
     where: {
       documentId: documentId,
@@ -15,12 +21,16 @@ export const getFileForDocumentPage = async (
     },
     select: {
       id: true,
+      versionNumber: true,
+      documentId: true,
     },
     orderBy: {
       versionNumber: "desc",
     },
     take: 1,
   });
+
+  console.log(`Found document versions:`, documentVersions);
 
   if (documentVersions.length === 0) {
     throw new Error(
@@ -29,6 +39,24 @@ export const getFileForDocumentPage = async (
   }
 
   const documentVersion = documentVersions[0];
+
+  console.log(`Using document version:`, documentVersion);
+
+  // Check what document pages exist for this version
+  const allPagesForVersion = await prisma.documentPage.findMany({
+    where: {
+      versionId: documentVersion.id,
+    },
+    select: {
+      pageNumber: true,
+      versionId: true,
+    },
+    orderBy: {
+      pageNumber: "asc",
+    },
+  });
+
+  console.log(`All pages for version ${documentVersion.id}:`, allPagesForVersion);
 
   const documentPage = await prisma.documentPage.findUnique({
     where: {
@@ -41,6 +69,12 @@ export const getFileForDocumentPage = async (
       file: true,
       storageType: true,
     },
+  });
+
+  console.log(`Document page lookup result:`, {
+    pageNumber,
+    versionId: documentVersion.id,
+    found: !!documentPage,
   });
 
   if (!documentPage) {
