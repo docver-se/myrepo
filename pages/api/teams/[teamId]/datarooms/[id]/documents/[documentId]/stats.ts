@@ -6,10 +6,7 @@ import { getServerSession } from "next-auth/next";
 
 import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import {
-  getTotalAvgPageDuration,
-  getTotalDocumentDuration,
-} from "@/lib/tinybird";
+import { getAvgPageDurationHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 
 export default async function handle(
@@ -134,16 +131,22 @@ export default async function handle(
           id: view.id,
         }));
 
-      const duration = await getTotalAvgPageDuration({
-        documentId: documentId,
-        excludedLinkIds: "",
-        excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
-        since: 0,
-      });
+      let duration;
+      try {
+        duration = await getAvgPageDurationHttp({
+          documentId: documentId,
+          excludedLinkIds: "",
+          excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
+          since: 0,
+        });
+      } catch (error) {
+        console.error("Error fetching page duration data:", error);
+        duration = { data: [] };
+      }
 
       const stats = {
         views: filteredViews,
-        duration,
+        duration: duration || { data: [] },
         total_duration: 0, // INFO: hiding this for now
         groupedReactions: [], // INFO: hiding this as not relevant
         totalViews: filteredViews.length,

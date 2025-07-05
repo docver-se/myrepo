@@ -1,0 +1,20 @@
+NODE endpoint
+SQL >
+    %
+    SELECT
+        pageNumber,
+        versionNumber,
+        AVG(duration) AS avg_duration
+    FROM page_views
+    WHERE
+        documentId = {{ String(documentId, required=True) }}
+        AND time >= {{ Int64(since, required=True) }}
+        AND ({{ String(excludedViewIds, '') }} = '' OR viewId NOT IN splitByChar(',', {{ String(excludedViewIds, '') }}))
+    GROUP BY
+        pageNumber,
+        versionNumber
+    ORDER BY
+        pageNumber ASC,
+        versionNumber ASC
+
+TYPE ENDPOINT 

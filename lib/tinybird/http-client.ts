@@ -456,6 +456,40 @@ export async function getTotalAvgPageDurationHttp(params: {
   return result;
 }
 
+export async function getAvgPageDurationHttp(params: {
+  documentId: string;
+  excludedLinkIds: string;
+  excludedViewIds: string;
+  since: number;
+}): Promise<{ data: Array<{ pageNumber: string; versionNumber: number; avg_duration: number }> }> {
+  const searchParams = new URLSearchParams({
+    token: QUERY_TOKEN!,
+    documentId: params.documentId,
+    since: params.since.toString(),
+  });
+
+  if (params.excludedViewIds) {
+    searchParams.append("excludedViewIds", params.excludedViewIds);
+  }
+
+  const url = `${TINYBIRD_BASE_URL}/pipes/get_average_page_duration.json?${searchParams}`;
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to get avg page duration: ${response.status} ${errorText}`);
+  }
+
+  const result = await response.json();
+  return result;
+}
+
 export async function getTotalLinkDurationHttp(params: {
   linkId: string;
   documentId: string;

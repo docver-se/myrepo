@@ -37,8 +37,15 @@ export default function StatsChart({
 
   const swrData = stats?.duration;
 
-  if (swrData) {
+  if (swrData && swrData.data && Array.isArray(swrData.data)) {
     swrData.data.forEach((dataItem) => {
+      // Safety check to ensure the data item has the expected structure
+      if (!dataItem || !dataItem.pageNumber || !dataItem.versionNumber || 
+          dataItem.avg_duration === undefined || dataItem.avg_duration === null) {
+        console.warn('Skipping invalid data item:', dataItem);
+        return;
+      }
+      
       const pageIndex = durationData.findIndex(
         (item) => item.pageNumber === dataItem.pageNumber,
       );

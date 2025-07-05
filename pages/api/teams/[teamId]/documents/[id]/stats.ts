@@ -5,10 +5,7 @@ import { getServerSession } from "next-auth/next";
 
 import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import {
-  getTotalAvgPageDuration,
-} from "@/lib/tinybird";
-import { getTotalDocumentDurationHttp } from "@/lib/tinybird/http-client";
+import { getTotalDocumentDurationHttp, getAvgPageDurationHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 
 import { authOptions } from "../../../../auth/[...nextauth]";
@@ -108,25 +105,36 @@ export default async function handle(
         _count: { type: true },
       });
 
-      const duration = await getTotalAvgPageDuration({
-        documentId: docId,
-        excludedLinkIds: "",
-        excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
-        since: 0,
-      });
+      let duration;
+      let totalDuration = 0;
 
-      const totalDocumentDuration = await getTotalDocumentDurationHttp({
-        documentId: docId,
-        excludedLinkIds: "",
-        excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
-        since: 0,
-      });
+      try {
+        duration = await getAvgPageDurationHttp({
+          documentId: docId,
+          excludedLinkIds: "",
+          excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
+          since: 0,
+        });
+      } catch (error) {
+        console.error("Error fetching page duration data:", error);
+        duration = { data: [] };
+      }
 
-      const totalDuration = totalDocumentDuration.data?.[0]?.sum_duration || 0;
+      try {
+        const totalDocumentDuration = await getTotalDocumentDurationHttp({
+          documentId: docId,
+          excludedLinkIds: "",
+          excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
+          since: 0,
+        });
+        totalDuration = totalDocumentDuration.data?.[0]?.sum_duration || 0;
+      } catch (error) {
+        console.error("Error fetching total document duration:", error);
+      }
 
       const stats = {
         views: filteredViews,
-        duration,
+        duration: duration || { data: [] },
         total_duration:
           filteredViews.length > 0
             ? (totalDuration * 1.0) / filteredViews.length

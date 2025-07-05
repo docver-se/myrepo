@@ -11,7 +11,7 @@ export type TStatsData = {
   views: View[];
   groupedReactions: { type: string; _count: { type: number } }[];
   duration: {
-    data: { versionNumber: number; pageNumber: string; avg_duration: number }[];
+    data: { pageNumber: string; versionNumber: number; avg_duration: number }[];
   };
   total_duration: number;
   totalViews: number;
