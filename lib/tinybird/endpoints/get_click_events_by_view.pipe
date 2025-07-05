@@ -9,3 +9,5 @@ SQL >
         view_id = {{ String(viewId, required=True) }}
     ORDER BY
         timestamp ASC
+
+TYPE ENDPOINT

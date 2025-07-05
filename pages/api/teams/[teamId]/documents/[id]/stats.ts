@@ -7,8 +7,8 @@ import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
 import {
   getTotalAvgPageDuration,
-  getTotalDocumentDuration,
 } from "@/lib/tinybird";
+import { getTotalDocumentDurationHttp } from "@/lib/tinybird/http-client";
 import { CustomUser } from "@/lib/types";
 
 import { authOptions } from "../../../../auth/[...nextauth]";
@@ -115,25 +115,29 @@ export default async function handle(
         since: 0,
       });
 
-      const totalDocumentDuration = await getTotalDocumentDuration({
+      const totalDocumentDuration = await getTotalDocumentDurationHttp({
         documentId: docId,
         excludedLinkIds: "",
         excludedViewIds: allExcludedViews.map((view) => view.id).join(","),
         since: 0,
       });
 
+      const totalDuration = totalDocumentDuration.data?.[0]?.sum_duration || 0;
+
       const stats = {
         views: filteredViews,
         duration,
         total_duration:
-          (totalDocumentDuration.data[0].sum_duration * 1.0) /
-          filteredViews.length,
+          filteredViews.length > 0
+            ? (totalDuration * 1.0) / filteredViews.length
+            : 0,
         groupedReactions,
         totalViews: filteredViews.length,
       };
 
       return res.status(200).json(stats);
     } catch (error) {
+      console.error("Error fetching document stats:", error);
       errorhandler(error, res);
     }
   } else {

@@ -8,3 +8,5 @@ SQL >
     WHERE
         dataroomId = {{ String(dataroomId, required=True) }}
         AND time >= {{ Int64(since, required=True) }}
+
+TYPE ENDPOINT

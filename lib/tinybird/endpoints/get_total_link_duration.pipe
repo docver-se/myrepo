@@ -7,3 +7,5 @@ SQL >
     WHERE
         linkId = {{ String(linkId, required=True) }}
         AND time >= {{ Int64(since, required=True) }}
+
+TYPE ENDPOINT

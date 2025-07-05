@@ -2,7 +2,7 @@ import { NextRequest, userAgent } from "next/server";
 
 import { geolocation, ipAddress } from "@vercel/functions";
 
-import { recordLinkViewTB } from "@/lib/tinybird";
+import { recordLinkViewTBHttp } from "@/lib/tinybird/http-client";
 import { isBot } from "@/lib/utils/user-agent";
 
 import sendNotification from "../api/notification-helper";
@@ -102,7 +102,7 @@ export async function recordLinkView({
 
   const [, ,] = await Promise.all([
     // record link view in Tinybird
-    recordLinkViewTB(clickData),
+    recordLinkViewTBHttp(clickData),
 
     // send email notification
     enableNotification ? sendNotification({ viewId, locationData }) : null,

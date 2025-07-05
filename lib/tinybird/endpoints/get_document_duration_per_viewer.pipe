@@ -9,3 +9,5 @@ SQL >
         documentId = {{ String(doc_id, required=True) }}
     GROUP BY
         viewId
+
+TYPE ENDPOINT

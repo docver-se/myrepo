@@ -8,7 +8,7 @@ import { getServerSession } from "next-auth/next";
 import { LIMITS } from "@/lib/constants";
 import { errorhandler } from "@/lib/errorHandler";
 import prisma from "@/lib/prisma";
-import { getViewPageDuration } from "@/lib/tinybird";
+import { getViewPageDurationHttp } from "@/lib/tinybird/http-client";
 import { getVideoEventsByDocument } from "@/lib/tinybird/pipes";
 import { CustomUser } from "@/lib/types";
 import { log } from "@/lib/utils";
@@ -132,7 +132,7 @@ async function getVideoViews(
 
 async function getDocumentViews(views: ViewWithExtras[], document: Document) {
   const durationsPromises = views.map((view) => {
-    return getViewPageDuration({
+    return getViewPageDurationHttp({
       documentId: document.id,
       viewId: view.id,
       since: 0,

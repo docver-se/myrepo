@@ -12,3 +12,5 @@ SQL >
         pageNumber
     ORDER BY
         pageNumber ASC
+
+TYPE ENDPOINT
