@@ -24,7 +24,7 @@ export const getFileForDocumentPage = async (
 
   if (documentVersions.length === 0) {
     throw new Error(
-      `Latest document version from document id ${documentId} with document id ${documentId} not found`,
+      `Latest document version from document id ${documentId} not found`,
     );
   }
 
@@ -44,8 +44,16 @@ export const getFileForDocumentPage = async (
   });
 
   if (!documentPage) {
+    console.error(`Debug info for missing document page:`, {
+      pageNumber,
+      documentId,
+      versionNumber,
+      versionId: documentVersion.id,
+      requestedPageNumber: pageNumber,
+    });
+    
     throw new Error(
-      `Document page ${pageNumber} with version id ${documentId} not found`,
+      `Document page ${pageNumber} with version id ${documentVersion.id} not found`,
     );
   }
 
