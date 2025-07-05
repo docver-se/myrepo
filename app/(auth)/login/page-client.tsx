@@ -187,12 +187,22 @@ export default function Login() {
             </div>
             <div className="relative">
               <Button
-                onClick={() => {
+                onClick={async () => {
                   setLastUsed("passkey");
                   setClickedMethod("passkey");
-                  signInWithPasskey({
-                    tenantId: process.env.NEXT_PUBLIC_HANKO_TENANT_ID as string,
-                  });
+                  try {
+                    await signInWithPasskey({
+                      tenantId: process.env.NEXT_PUBLIC_HANKO_TENANT_ID as string,
+                    });
+                    // If successful, the page should redirect automatically
+                    // But reset loading state just in case
+                    setClickedMethod(undefined);
+                  } catch (error) {
+                    // Reset loading state and show error
+                    setClickedMethod(undefined);
+                    console.error("Passkey authentication failed:", error);
+                    toast.error("Passkey authentication failed. Please try again.");
+                  }
                 }}
                 variant="outline"
                 loading={clickedMethod === "passkey"}
