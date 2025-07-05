@@ -18,11 +18,17 @@ const CustomTooltip = ({
   const pageNumber =
     payload && payload.length > 0 ? parseInt(payload[0].payload.pageNumber) : 0;
 
-  // Default versionNumber to 0 or a sensible default if payload is not available
-  const versionNumber =
-    payload && payload.length > 0
-      ? parseInt(payload[0].payload.versionNumber)
-      : 1;
+  // Default versionNumber with proper fallback logic
+  let versionNumber = 1; // Default fallback
+  if (payload && payload.length > 0) {
+    const rawVersionNumber = payload[0].payload.versionNumber;
+    if (rawVersionNumber !== undefined && rawVersionNumber !== null) {
+      const parsedVersion = parseInt(rawVersionNumber);
+      if (!isNaN(parsedVersion) && parsedVersion > 0) {
+        versionNumber = parsedVersion;
+      }
+    }
+  }
   const { data, error } = useDocumentThumbnail(
     pageNumber,
     documentId,

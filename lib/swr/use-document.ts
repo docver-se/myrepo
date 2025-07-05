@@ -170,10 +170,19 @@ export function useDocumentThumbnail(
   documentId: string,
   versionNumber?: number,
 ) {
+  // Ensure versionNumber is a valid positive number, fallback to 1
+  const validVersionNumber = 
+    versionNumber && 
+    typeof versionNumber === 'number' && 
+    !isNaN(versionNumber) && 
+    versionNumber > 0 
+      ? versionNumber 
+      : 1;
+
   const { data, error } = useSWR<{ imageUrl: string }>(
     pageNumber === 0
       ? null
-      : `/api/jobs/get-thumbnail?documentId=${documentId}&pageNumber=${pageNumber}&versionNumber=${versionNumber}`,
+      : `/api/jobs/get-thumbnail?documentId=${documentId}&pageNumber=${pageNumber}&versionNumber=${validVersionNumber}`,
     fetcher,
     {
       dedupingInterval: 1200000,

@@ -25,12 +25,13 @@ const renameDummyDurationKey = (data: Data[]): TransformedData[] => {
 };
 
 const renameSumDurationKey = (data: SumData[], versionNumber?: number) => {
+  const defaultVersionNumber = versionNumber || 1; // Provide fallback
   return data.map((item) => {
     return {
       ...item,
       "Time spent per page": item.duration,
       duration: undefined,
-      versionNumber: versionNumber,
+      versionNumber: defaultVersionNumber,
     };
   });
 };
