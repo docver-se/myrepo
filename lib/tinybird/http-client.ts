@@ -4,7 +4,7 @@
 const TINYBIRD_BASE_URL = "https://api.europe-west2.gcp.tinybird.co/v0";
 
 // Ingestion token for writing data
-const INGESTION_TOKEN = process.env.TINYBIRD_API_KEY;
+const INGESTION_TOKEN = process.env.TINYBIRD_TOKEN;
 // Query token for reading data  
 const QUERY_TOKEN = process.env.TINYBIRD_TOKEN;
 
