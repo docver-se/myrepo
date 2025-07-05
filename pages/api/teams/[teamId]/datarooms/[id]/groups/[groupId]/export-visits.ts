@@ -7,7 +7,6 @@ import prisma from "@/lib/prisma";
 import {
   getViewPageDuration,
   getViewUserAgent,
-  getViewUserAgent_v2,
 } from "@/lib/tinybird";
 import { CustomUser } from "@/lib/types";
 
@@ -189,7 +188,7 @@ export default async function handler(
               viewedAt: docView.viewedAt.toISOString(),
               downloadedAt: docView.downloadedAt?.toISOString() || "NaN",
               duration: duration.data.reduce(
-                (total, data) => total + data.sum_duration,
+                (total, data) => total + data.duration,
                 0,
               ),
               completionRate: completionRate.toFixed(2) + "%",
@@ -262,27 +261,9 @@ export default async function handler(
 
     await Promise.all(
       documentViews.map(async (view) => {
-        const result = await getViewUserAgent({
+        const userAgentResult = await getViewUserAgent({
           viewId: view.id,
         });
-
-        let userAgentResult;
-        if (!result || result.rows === 0) {
-          // Only call v2 if document and its id exist
-          if (view.document?.id) {
-            userAgentResult = await getViewUserAgent_v2({
-              documentId: view.document.id,
-              viewId: view.id,
-              since: 0,
-            });
-          } else {
-            // Set default empty result if document/id is missing
-            userAgentResult = { data: [] };
-          }
-        } else {
-          userAgentResult = result;
-        }
-
         userAgentDataMap.set(view.id, userAgentResult);
       }),
     );

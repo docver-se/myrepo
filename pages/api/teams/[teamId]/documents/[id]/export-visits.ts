@@ -7,7 +7,6 @@ import prisma from "@/lib/prisma";
 import {
   getViewPageDuration,
   getViewUserAgent,
-  getViewUserAgent_v2,
 } from "@/lib/tinybird";
 import { CustomUser } from "@/lib/types";
 
@@ -154,19 +153,9 @@ export default async function handler(
 
     const userAgentData = await Promise.all(
       views.map(async (view) => {
-        const result = await getViewUserAgent({
+        return await getViewUserAgent({
           viewId: view.id,
         });
-
-        if (!result || result.rows === 0) {
-          return getViewUserAgent_v2({
-            documentId: docId,
-            viewId: view.id,
-            since: 0,
-          });
-        }
-
-        return result;
       }),
     );
     // Process each view and add to CSV rows
@@ -182,7 +171,7 @@ export default async function handler(
         : 0;
 
       const totalDuration = durations[index].data.reduce(
-        (total, data) => total + data.sum_duration,
+        (total, data) => total + data.duration,
         0,
       );
 
@@ -230,3 +219,4 @@ export default async function handler(
     return res.status(500).json({ message: "Something went wrong" });
   }
 }
+

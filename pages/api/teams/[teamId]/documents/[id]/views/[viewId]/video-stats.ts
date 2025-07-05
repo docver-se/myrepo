@@ -68,8 +68,7 @@ export default async function handler(
 
     // Fetch video events from Tinybird
     const response = await getVideoEventsByView({
-      view_id: viewId,
-      document_id: documentId,
+      viewId,
     });
 
     if (!response?.data) {

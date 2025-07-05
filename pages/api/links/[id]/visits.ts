@@ -108,7 +108,7 @@ export default async function handle(
       // Sum up durations for each view
       const summedDurations = durations.map((duration) => {
         return duration.data.reduce(
-          (totalDuration, data) => totalDuration + data.sum_duration,
+          (totalDuration, data) => totalDuration + data.duration,
           0,
         );
       });

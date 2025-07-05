@@ -54,8 +54,7 @@ export default async function handler(
     }
 
     const data = await getClickEventsByView({
-      document_id: id,
-      view_id: viewId,
+      viewId: viewId,
     });
 
     return res.status(200).json(data);

@@ -43,7 +43,7 @@ export default async function handler(
       });
 
       const events = await getWebhookEvents({
-        webhookId: pId,
+        webhook_id: pId,
       });
 
       const parsedEvents = events.data.map((event) => ({

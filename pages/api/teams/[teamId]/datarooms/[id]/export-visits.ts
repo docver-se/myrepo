@@ -7,7 +7,6 @@ import prisma from "@/lib/prisma";
 import {
   getViewPageDuration,
   getViewUserAgent,
-  getViewUserAgent_v2,
 } from "@/lib/tinybird";
 import { CustomUser } from "@/lib/types";
 
@@ -183,7 +182,7 @@ export default async function handler(
               viewedAt: docView.viewedAt.toISOString(),
               downloadedAt: docView.downloadedAt?.toISOString() || "NaN",
               duration: duration.data.reduce(
-                (total, data) => total + data.sum_duration,
+                (total, data) => total + data.duration,
                 0,
               ),
               completionRate: completionRate.toFixed(2) + "%",
@@ -254,19 +253,9 @@ export default async function handler(
     // Get user agent data for all views
     const userAgentData = await Promise.all(
       documentViews.map(async (view) => {
-        const result = await getViewUserAgent({
+        return await getViewUserAgent({
           viewId: view.id,
         });
-
-        if (!result || result.rows === 0) {
-          return getViewUserAgent_v2({
-            documentId: view.document?.id!,
-            viewId: view.id,
-            since: 0,
-          });
-        }
-
-        return result;
       }),
     );
 
@@ -340,3 +329,4 @@ export default async function handler(
     return res.status(500).json({ message: "Something went wrong" });
   }
 }
+

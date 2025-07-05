@@ -317,8 +317,9 @@ export default async function handler(
 
                 if (durationData.data && durationData.data[0]) {
                   const totalDuration = durationData.data[0].sum_duration;
-                  const viewCount = durationData.data[0].view_count;
-                  const avgDurationMs = totalDuration / viewCount;
+                  const viewCount = link._count.views;
+                  const avgDurationMs =
+                    viewCount > 0 ? totalDuration / viewCount : 0;
                   avgDuration = durationFormat(avgDurationMs);
                 }
               } catch (error) {
@@ -551,7 +552,7 @@ export default async function handler(
                 if (pageData.data && pageData.data.length > 0) {
                   // Calculate total duration from all pages
                   totalDuration = pageData.data.reduce(
-                    (sum, page) => sum + page.sum_duration,
+                    (sum, page) => sum + page.duration,
                     0,
                   );
 

@@ -156,8 +156,8 @@ async function getDocumentViews(views: ViewWithExtras[], document: Document) {
       ...view,
       duration: durations[index],
       totalDuration: durations[index].data.reduce(
-        (total: number, data: { sum_duration: number }) =>
-          total + data.sum_duration,
+        (total: number, data: { duration: number }) =>
+          total + data.duration,
         0,
       ),
       completionRate: completionRate.toFixed(),
@@ -289,7 +289,7 @@ export default async function handle(
       let viewsWithDuration;
       if (document.type === "video") {
         const videoEvents = await getVideoEventsByDocument({
-          document_id: docId,
+          documentId: docId,
         });
         viewsWithDuration = await getVideoViews(
           limitedViews,

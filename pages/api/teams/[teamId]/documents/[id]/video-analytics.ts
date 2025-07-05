@@ -190,7 +190,7 @@ export default async function handle(
     try {
       // Fetch video events from Tinybird
       const response = await getVideoEventsByDocument({
-        document_id: documentId,
+        documentId,
       });
 
       if (!response || !response.data) {
