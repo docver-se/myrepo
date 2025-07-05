@@ -163,30 +163,6 @@ export default function Login() {
             </div>
             <div className="relative">
               <Button
-                onClick={() => {
-                  setClickedMethod("linkedin");
-                  setLastUsed("linkedin");
-                  signIn("linkedin", {
-                    ...(next && next.length > 0 ? { callbackUrl: next } : {}),
-                  }).then((res) => {
-                    if (res?.status) {
-                      setClickedMethod(undefined);
-                    }
-                  });
-                }}
-                loading={clickedMethod === "linkedin"}
-                disabled={clickedMethod && clickedMethod !== "linkedin"}
-                className="flex w-full items-center justify-center space-x-2 border border-gray-300 bg-gray-100 font-normal text-gray-900 hover:bg-gray-200"
-              >
-                <LinkedIn />
-                <span>Continue with LinkedIn</span>
-                {clickedMethod !== "linkedin" && lastUsed === "linkedin" && (
-                  <LastUsed />
-                )}
-              </Button>
-            </div>
-            <div className="relative">
-              <Button
                 onClick={async () => {
                   setLastUsed("passkey");
                   setClickedMethod("passkey");
