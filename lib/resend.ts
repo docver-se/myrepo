@@ -46,11 +46,11 @@ export const sendEmail = async ({
   const fromAddress =
     from ??
     (marketing
-      ? "Dylan from Docverse <dylan@ship.docver.se>"
+      ? "Dylan from Docverse <ship@docver.se>"
       : system
         ? "Docverse <system@docver.se>"
         : verify
-          ? "Docverse <system@verify.docver.se>"
+          ? "Docverse <verify@docver.se>"
           : !!scheduledAt
             ? "Dylan from Docverse <dylan@docver.se>"
             : "Dylan from Docverse <dylan@docver.se>");
