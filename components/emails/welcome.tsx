@@ -101,7 +101,7 @@ const WelcomeEmail = ({ name }: WelcomeEmailProps) => {
                 If you have any questions or feedback just respond to this
                 email. I&apos;m always happy to help!
               </Text>
-              <Text className="text-sm text-gray-400">Marc from Docverse</Text>
+              <Text className="text-sm text-gray-400">Dylan from Docverse</Text>
             </Section>
             <Hr />
             <Section className="mt-8 text-gray-400">

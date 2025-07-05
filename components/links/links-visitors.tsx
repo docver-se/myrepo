@@ -41,7 +41,7 @@ export default function LinksVisitors({
 
                 <div className="text-xs md:text-sm">
                   <Gauge
-                    value={view.completionRate}
+                    value={parseFloat(view.completionRate)}
                     size={"small"}
                     showValue={true}
                   />

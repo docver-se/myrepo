@@ -69,7 +69,7 @@ const TrialEndReminderEmail = ({ name }: TrialEndReminderEmail) => {
               will be <span className="text-red-500 underline">disabled</span>{" "}
               after your trial.
             </Text>
-                          <Text className="text-sm text-gray-400">Marc from Docverse</Text>
+                          <Text className="text-sm text-gray-400">Dylan from Docverse</Text>
             <Hr />
             <Section className="mt-8 text-gray-400">
               <Text className="text-xs">

@@ -118,7 +118,7 @@ const UpgradePlanEmail = ({
                 Let me know if you have any questions or feedback. I&apos;m
                 always happy to help!
               </Text>
-              <Text className="text-sm text-gray-400">Marc from Papermark</Text>
+              <Text className="text-sm text-gray-400">Dylan from Papermark</Text>
             </Section>
             <Hr />
             <Section className="mt-8 text-gray-400">
